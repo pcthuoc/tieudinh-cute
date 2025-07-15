@@ -35,46 +35,40 @@ rcute-robot/
 ├── scripts/               # Autostart, benchmark, tiện ích CLI
 ├── tests/                 # Unit test
 └── requirements.txt
+```
 
-✅ Tiến độ thực hiện
+
+## ✅ Tiến độ thực hiện
+
 ### 📅 Tiến độ ngày 2025-07-15
-#### 📁 Cấu hình hệ thống
-Đã tạo file hardware_config.json trong thư mục config/, định nghĩa đầy đủ các chân phần cứng bao gồm: touch, ir, motor, servo, screen, sonar.
 
-Xây dựng class HardwareConfig trong hardware_config.py để load file JSON và truy cập từng thành phần bằng các thuộc tính như:
-config.servo_config, config.motor_pins, config.ir_pins...
+#### 📁 Cấu hình hệ thống
+
+- Đã tạo file `hardware_config.json` trong thư mục `config/`, định nghĩa đầy đủ các chân phần cứng bao gồm: `touch`, `ir`, `motor`, `servo`, `screen`, `sonar`.
+- Xây dựng class `HardwareConfig` trong `hardware_config.py` để load file JSON và truy cập từng thành phần bằng các thuộc tính như:  
+  `config.servo_config`, `config.motor_pins`, `config.ir_pins`,...
 
 #### ⚙️ Module phần cứng
-Hoàn thành module servo_controller.py:
 
-Tạo class ServoKit quản lý toàn bộ kênh servo của PCA9685.
+- **Hoàn thành module `servo_controller.py`:**
+  - Tạo class `ServoKit` quản lý toàn bộ kênh servo của PCA9685.
+  - Tạo class `Servo` hỗ trợ điều chỉnh góc, pulse, relax servo.
+  - Chuẩn hóa theo PEP8, bổ sung chú thích rõ ràng.
 
-Tạo class Servo hỗ trợ điều chỉnh góc, pulse, relax servo.
-
-Chuẩn hóa theo PEP8, bổ sung chú thích rõ ràng.
-
-Hoàn thành module sonar_sensor.py:
-
-Điều khiển cảm biến khoảng cách VL53L0X qua I2C.
-
-Tự động đọc giá trị trong một luồng riêng (thread).
-
-Hỗ trợ callback when_in_range và when_out_of_range.
+- **Hoàn thành module `sonar_sensor.py`:**
+  - Điều khiển cảm biến khoảng cách VL53L0X qua I2C.
+  - Tự động đọc giá trị trong một luồng riêng (thread).
+  - Hỗ trợ callback `when_in_range` và `when_out_of_range`.
 
 #### 🧠 Cấu trúc & định hướng
-Hoàn thiện sơ đồ tổ chức dự án rcute-robot:
 
-Phân chia rõ ràng các module theo nhiệm vụ (main/, domain/, services/, hardware/, interface/,...).
+- Hoàn thiện sơ đồ tổ chức dự án `rcute-robot`:
+  - Phân chia rõ ràng các module theo nhiệm vụ (`main/`, `domain/`, `services/`, `hardware/`, `interface/`,...).
+  - Tổ chức chuẩn theo mô hình hướng đối tượng (OOP), dễ mở rộng.
 
-Tổ chức chuẩn theo mô hình hướng đối tượng (OOP), dễ mở rộng.
+- Định hướng sử dụng `asyncio` làm nền để chạy song song:
+  - Vòng lặp chính `robot_loop`
+  - Server web `Sanic` xử lý WebSocket hoặc REST
 
-Định hướng sử dụng asyncio làm nền để chạy song song:
-
-Vòng lặp chính robot_loop
-
-Server web Sanic xử lý WebSocket hoặc REST
-
-Cập nhật README.md:
-
-Mô tả mục tiêu, cấu trúc project, phần cứng hỗ trợ, tiến độ hiện tại và kế hoạch tiếp theo.
-
+- Cập nhật `README.md`:
+  - Mô tả mục tiêu, cấu trúc project, phần cứng hỗ trợ, tiến độ hiện tại và kế hoạch tiếp theo.
